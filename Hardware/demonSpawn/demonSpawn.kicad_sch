@@ -1,0 +1,720 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "f6e9da88-6fb7-4d5f-a921-ae870466754a")
+	(paper "A4")
+	(lib_symbols)
+	(text "Demon spawn remote"
+		(exclude_from_sim no)
+		(at 153.67 17.78 0)
+		(effects
+			(font
+				(size 5.08 5.08)
+				(thickness 1.016)
+				(bold yes)
+			)
+		)
+		(uuid "2232e772-a3e7-47c6-801b-d630556a67d5")
+	)
+	(junction
+		(at 166.37 109.22)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "be686e74-1ea9-431c-aadd-8ddcfbe0bca5")
+	)
+	(junction
+		(at 168.91 111.76)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d4a26281-d6f5-477a-ab2d-7e00204129b4")
+	)
+	(wire
+		(pts
+			(xy 156.21 62.23) (xy 177.8 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0674ba96-30af-4391-bcd4-a5e3c9f48d01")
+	)
+	(wire
+		(pts
+			(xy 156.21 109.22) (xy 166.37 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13b5a95b-1e62-453e-b971-32f0462ce99e")
+	)
+	(wire
+		(pts
+			(xy 156.21 64.77) (xy 177.8 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3130cf07-7772-4bfd-9e2e-a3914d359c86")
+	)
+	(wire
+		(pts
+			(xy 90.17 92.71) (xy 113.03 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "436f9228-13ba-4984-b649-2457e4ef06c6")
+	)
+	(wire
+		(pts
+			(xy 156.21 72.39) (xy 177.8 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47da49e1-70da-4aa5-bfe9-610351215407")
+	)
+	(wire
+		(pts
+			(xy 90.17 95.25) (xy 113.03 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5050059b-a5e6-486e-8b9e-04aeab43b012")
+	)
+	(wire
+		(pts
+			(xy 156.21 128.27) (xy 177.8 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6aa055e4-930b-47dc-b082-b2264cd80978")
+	)
+	(wire
+		(pts
+			(xy 156.21 119.38) (xy 177.8 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e9ec3d5-0466-4803-adfa-84db8c2913cc")
+	)
+	(wire
+		(pts
+			(xy 156.21 121.92) (xy 177.8 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8090cbb7-c908-4750-bac7-11247806b4cc")
+	)
+	(wire
+		(pts
+			(xy 168.91 111.76) (xy 177.8 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "81f3958c-c073-4fb9-9ec2-f60b15f3b227")
+	)
+	(wire
+		(pts
+			(xy 156.21 74.93) (xy 177.8 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "932a5224-0e33-4c43-9fc4-30b728768db7")
+	)
+	(wire
+		(pts
+			(xy 168.91 97.79) (xy 168.91 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a96c0b65-f3b8-4beb-b6b4-7e632416d9a3")
+	)
+	(wire
+		(pts
+			(xy 156.21 82.55) (xy 177.8 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa0fa8c6-afcb-4424-a02e-2956f97a9aa3")
+	)
+	(wire
+		(pts
+			(xy 166.37 109.22) (xy 177.8 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "af442cf9-6c8d-4cbf-914c-4ed8461f6832")
+	)
+	(wire
+		(pts
+			(xy 177.8 97.79) (xy 168.91 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be707195-5eff-469c-82bf-e42c369c6307")
+	)
+	(wire
+		(pts
+			(xy 156.21 111.76) (xy 168.91 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ca47f8d0-7734-4576-973b-058377bee1da")
+	)
+	(polyline
+		(pts
+			(xy 112.522 22.352) (xy 195.072 22.352)
+		)
+		(stroke
+			(width 0.5)
+			(type solid)
+		)
+		(uuid "d6d1c5e7-a976-48d2-b46c-d1b9c129f7f8")
+	)
+	(wire
+		(pts
+			(xy 166.37 95.25) (xy 177.8 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9bf6029-39f7-4317-aa9f-b34d7b38c26b")
+	)
+	(wire
+		(pts
+			(xy 166.37 109.22) (xy 166.37 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "df12766b-96bd-4b9f-970a-98ce02583043")
+	)
+	(wire
+		(pts
+			(xy 156.21 80.01) (xy 177.8 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed1c784d-3283-4255-b449-7e7f02f51176")
+	)
+	(wire
+		(pts
+			(xy 156.21 130.81) (xy 177.8 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed4bacb2-77de-4160-85cb-bfc1a3c87d77")
+	)
+	(sheet
+		(at 177.8 106.68)
+		(size 31.75 31.75)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "4674ca09-d189-4e55-a308-c97a33af5dff")
+		(property "Sheetname" "Battery Charger"
+			(at 177.8 105.9684 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "battery_charger.kicad_sch"
+			(at 177.8 139.0146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "CHG_CE" input
+			(at 177.8 128.27 180)
+			(uuid "1cee5144-82d8-46b1-95d0-1ff9959bcbe6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CHG_PG" output
+			(at 177.8 119.38 180)
+			(uuid "16823e44-288a-4f76-8c86-002eec5d670f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CHG_STAT" output
+			(at 177.8 121.92 180)
+			(uuid "1667395d-8fb3-4067-8d9b-bfae291d8cc1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CHG_USB_D+" bidirectional
+			(at 177.8 109.22 180)
+			(uuid "14a1ca4a-720e-48fd-821c-37a72deb465c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CHG_USB_D-" bidirectional
+			(at 177.8 111.76 180)
+			(uuid "32f710cb-f125-49cf-867a-f9d2112de73e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "5V_EN" input
+			(at 177.8 130.81 180)
+			(uuid "55caa7ce-cd5f-4876-9cbf-20376c6517b5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "demonSpawn"
+				(path "/f6e9da88-6fb7-4d5f-a921-ae870466754a"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 113.03 58.42)
+		(size 43.18 80.01)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "6325688f-fe5a-4086-888e-f285a9c8ddca")
+		(property "Sheetname" "Microcontroller"
+			(at 113.03 57.7084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "microcontroller.kicad_sch"
+			(at 113.03 139.0146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "MCU_5V_EN" output
+			(at 156.21 130.81 0)
+			(uuid "9ccfb40b-37d0-42ba-9b2c-c7915a22fc73")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_LED1_DATA" output
+			(at 156.21 72.39 0)
+			(uuid "5aa345df-5f99-440a-b66d-641e4f141c35")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_LED2_DATA" output
+			(at 156.21 74.93 0)
+			(uuid "5b5d0739-668d-4508-9a84-36542867200c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_LED_CYCLE_BTN" input
+			(at 156.21 80.01 0)
+			(uuid "180125b0-8e56-4114-b9ed-4e32aecf6e70")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_PG" input
+			(at 156.21 119.38 0)
+			(uuid "eb11ff33-a089-4c9f-885a-bcc62d75867c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_REMOTE_BATT_LED_DATA" output
+			(at 113.03 92.71 180)
+			(uuid "b41eff86-ac4c-491e-a291-fe0e5984304a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MCU_STAT" input
+			(at 156.21 121.92 0)
+			(uuid "46a94ee5-7e93-42be-ac23-8cb9f84994c8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_USB_D+" bidirectional
+			(at 156.21 109.22 0)
+			(uuid "ecf06486-b9d6-48c4-b60e-be2068fc5442")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_USB_D-" bidirectional
+			(at 156.21 111.76 0)
+			(uuid "9c6c40b1-587e-4ad4-96e0-2fe7548af2e2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_WING_BATT_LED_DATA" output
+			(at 113.03 95.25 180)
+			(uuid "75eeaf0b-5af7-4cab-97a9-0251ce3ce6b3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MCU_SHOW_BATT_LED_BTN" input
+			(at 156.21 82.55 0)
+			(uuid "4a72f6d8-e329-4ddb-ace6-55a591dfbb65")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_CHG_EN" output
+			(at 156.21 128.27 0)
+			(uuid "8ca5408d-9389-434d-b223-3cb31c76ba86")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_DOWN_BTN" output
+			(at 156.21 64.77 0)
+			(uuid "106d8837-840c-415a-865d-eabe828ab365")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_UP_BTN" output
+			(at 156.21 62.23 0)
+			(uuid "272a5a76-4acf-429c-b1fd-e65203db4166")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "demonSpawn"
+				(path "/f6e9da88-6fb7-4d5f-a921-ae870466754a"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 62.23 88.9)
+		(size 27.94 11.43)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "9e4ec6c6-18e2-4258-9e90-680f0dd25a27")
+		(property "Sheetname" "Battery Level Indicators"
+			(at 62.23 88.1884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "battery_level_indicators.kicad_sch"
+			(at 62.23 100.9146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "REMOTE_BATT_LED_DATA" input
+			(at 90.17 92.71 0)
+			(uuid "0310fbb2-8ea6-40b3-9c53-4f370df2149e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "WING_BATT_LED_DATA" input
+			(at 90.17 95.25 0)
+			(uuid "5c84e1b6-cdd0-4a64-a354-68044849b7f7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "demonSpawn"
+				(path "/f6e9da88-6fb7-4d5f-a921-ae870466754a"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 177.8 58.42)
+		(size 31.75 43.18)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "dd9f3b8c-56ca-4152-8646-5779cf0cb670")
+		(property "Sheetname" "Connectors and Buttons"
+			(at 177.8 57.7084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "connectors.kicad_sch"
+			(at 177.8 102.1846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "CONN_LED1_DATA" output
+			(at 177.8 72.39 180)
+			(uuid "9b34e544-50b9-4376-9d1e-dfea5ee60f53")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CONN_LED2_DATA" output
+			(at 177.8 74.93 180)
+			(uuid "c55b1951-7ce3-4a12-91f5-2f96eb63f2d4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LED_CYCLE_BTN" output
+			(at 177.8 80.01 180)
+			(uuid "1c3edd3e-844c-4b78-ad67-1d1253e45878")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SHOW_BATT_LEVEL_BTN" output
+			(at 177.8 82.55 180)
+			(uuid "0e54a277-9e88-4afb-ac08-7ca713601cf5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CONN_USB_D+" bidirectional
+			(at 177.8 95.25 180)
+			(uuid "68df5504-bb03-48ab-a6d0-6a7188ec15a4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CONN_USB_D-" bidirectional
+			(at 177.8 97.79 180)
+			(uuid "6aa3557c-cfe9-4b68-9e1e-b80ff75479c1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DOWN_BTN" output
+			(at 177.8 64.77 180)
+			(uuid "a59db069-1f4e-4874-b7c4-e40ccf16ffc3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "UP_BTN" output
+			(at 177.8 62.23 180)
+			(uuid "791e19c6-cbf7-43b1-8a7b-0b84d7570426")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "demonSpawn"
+				(path "/f6e9da88-6fb7-4d5f-a921-ae870466754a"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

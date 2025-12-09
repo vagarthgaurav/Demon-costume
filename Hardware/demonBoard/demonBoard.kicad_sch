@@ -1,0 +1,510 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "d5196155-f624-4ab7-8c53-2366fd7d91ef")
+	(paper "A4")
+	(title_block
+		(title "Demon board")
+		(rev "0.1")
+		(company "mangoByte")
+	)
+	(lib_symbols)
+	(text "DEMON BOARD"
+		(exclude_from_sim no)
+		(at 154.94 18.288 0)
+		(effects
+			(font
+				(size 5 5)
+				(thickness 0.508)
+				(bold yes)
+			)
+		)
+		(uuid "ff892afd-6d2c-429a-b558-a51a6d16b686")
+	)
+	(wire
+		(pts
+			(xy 146.05 119.38) (xy 157.48 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "12f5458b-9f9d-4e77-982e-57a7aa261c28")
+	)
+	(wire
+		(pts
+			(xy 146.05 81.28) (xy 157.48 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "16047ee9-2154-455d-ba7c-71bb96bbae37")
+	)
+	(wire
+		(pts
+			(xy 146.05 83.82) (xy 157.48 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2d1940f5-d685-4cdb-b09c-a10a82d46230")
+	)
+	(wire
+		(pts
+			(xy 146.05 93.98) (xy 157.48 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "42020051-d96e-4a54-be0f-d11473409b23")
+	)
+	(polyline
+		(pts
+			(xy 127 21.59) (xy 184.15 21.59)
+		)
+		(stroke
+			(width 0.508)
+			(type solid)
+		)
+		(uuid "4f8324a1-8b60-42a7-8d08-b3250dd2ce44")
+	)
+	(wire
+		(pts
+			(xy 146.05 74.93) (xy 157.48 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6ae89175-c3b9-4812-9f7e-773ff7030f33")
+	)
+	(wire
+		(pts
+			(xy 146.05 72.39) (xy 157.48 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "741ca44c-42f1-4495-87b3-48ba68ee8514")
+	)
+	(wire
+		(pts
+			(xy 146.05 78.74) (xy 157.48 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "74894d0e-c131-4cdf-8d7b-67c58673ee54")
+	)
+	(wire
+		(pts
+			(xy 146.05 91.44) (xy 157.48 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ef06568-d373-4150-9512-ab04f0e28b9a")
+	)
+	(polyline
+		(pts
+			(xy 182.88 21.59) (xy 184.15 21.59)
+		)
+		(stroke
+			(width 0.508)
+			(type solid)
+		)
+		(uuid "a3fe4668-3f2a-4858-ab8e-11d036588b13")
+	)
+	(wire
+		(pts
+			(xy 146.05 115.57) (xy 157.48 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a59b0682-8ef2-40fa-b8e1-cc6d422b61e3")
+	)
+	(wire
+		(pts
+			(xy 146.05 96.52) (xy 157.48 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a64cc900-7070-4cb0-904c-03ebd4f42a3a")
+	)
+	(wire
+		(pts
+			(xy 146.05 99.06) (xy 157.48 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b043d5b4-c3bb-439c-b05e-9d9794fd0f43")
+	)
+	(sheet
+		(at 157.48 110.49)
+		(size 39.37 12.7)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "30bfcba6-b840-4c1f-8e14-83db72034865")
+		(property "Sheetname" "Voltage regulators and voltage sense"
+			(at 157.48 109.7784 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "voltage_regulators_and_voltage_sense.kicad_sch"
+			(at 157.48 123.7746 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "VBAT_SENSE" output
+			(at 157.48 115.57 180)
+			(uuid "148327b4-ca9c-4ca5-a48e-3e0c5c0ba1f0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "12V_EN" input
+			(at 157.48 119.38 180)
+			(uuid "f3f00f8d-2fa1-444a-b316-c1c3f9e8237a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "demonBoard"
+				(path "/d5196155-f624-4ab7-8c53-2366fd7d91ef"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 157.48 68.58)
+		(size 30.48 35.56)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "82fe8785-d635-435e-978f-a51a9d8f6ee7")
+		(property "Sheetname" "Motor drivers and connectors"
+			(at 157.48 67.8684 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Motor_drivers.kicad_sch"
+			(at 157.48 104.7246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "LED_AUX1_OUT" input
+			(at 157.48 72.39 180)
+			(uuid "c12433f2-5b6a-45fb-9a10-d8d9bfcc8f5b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LED_AUX2_OUT" input
+			(at 157.48 74.93 180)
+			(uuid "d3e559fe-cb5b-4a0d-82bc-5943873209db")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LED_LEFT_OUT" input
+			(at 157.48 78.74 180)
+			(uuid "97513ebb-6cf9-4e69-aff5-4d0742eeb208")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LED_RIGHT_OUT" input
+			(at 157.48 81.28 180)
+			(uuid "d33b8315-38d9-469f-a787-86d9bd7eb82f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LED_TAIL_OUT" input
+			(at 157.48 83.82 180)
+			(uuid "594e72dd-4f53-4400-acad-b8447072726d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MOT_LEFT_IN1" input
+			(at 157.48 91.44 180)
+			(uuid "30221241-7bbf-4d3b-9260-a7d30992e785")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MOT_LEFT_IN2" input
+			(at 157.48 93.98 180)
+			(uuid "335c9a7c-bb0d-42b7-ae0a-1656f05dee88")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MOT_RIGHT_IN1" input
+			(at 157.48 96.52 180)
+			(uuid "6e11ba06-bb2c-4a03-a9a3-043cf2aaf671")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MOT_RIGHT_IN2" input
+			(at 157.48 99.06 180)
+			(uuid "41aab79a-7636-4f1f-b50e-70fffea12ca5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "demonBoard"
+				(path "/d5196155-f624-4ab7-8c53-2366fd7d91ef"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 123.19 68.58)
+		(size 22.86 54.61)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "ff069ddf-9bb7-43f3-8bcd-1520985db3df")
+		(property "Sheetname" "Microcontroller"
+			(at 123.19 67.8684 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Microcontroller.kicad_sch"
+			(at 123.19 123.7746 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "LED_AUX1_OUT" output
+			(at 146.05 72.39 0)
+			(uuid "98239903-c881-48e5-8fca-92deb0a8e47e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LED_AUX2_OUT" output
+			(at 146.05 74.93 0)
+			(uuid "5a159e36-f1f2-4b11-9502-d54f7131d044")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LED_LEFT_OUT" output
+			(at 146.05 78.74 0)
+			(uuid "bcf9ecbb-4745-4b95-b316-32e981faf296")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LED_RIGHT_OUT" output
+			(at 146.05 81.28 0)
+			(uuid "392b8805-7d2f-4a1b-b8ed-ada962380107")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LED_TAIL_OUT" output
+			(at 146.05 83.82 0)
+			(uuid "b694ad56-6e55-4a04-ade4-cd36ec014380")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MOT_LEFT_IN1" output
+			(at 146.05 91.44 0)
+			(uuid "3f96cceb-c96f-4bea-9bec-d785b999d768")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MOT_LEFT_IN2" output
+			(at 146.05 93.98 0)
+			(uuid "d3f423e6-b50e-409c-b8c7-92939346b8fe")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MOT_RIGHT_IN1" output
+			(at 146.05 96.52 0)
+			(uuid "6d4abcc8-f852-4b7e-a440-98a41ab8cd03")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MOT_RIGHT_IN2" output
+			(at 146.05 99.06 0)
+			(uuid "6a2439ce-21b0-44dd-a287-b875e7c4e28f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "VBAT_SENSE" input
+			(at 146.05 115.57 0)
+			(uuid "0d4c5857-2111-4625-9d17-50d301609b30")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "12V_EN" output
+			(at 146.05 119.38 0)
+			(uuid "7128fef9-b2e1-45d8-b2da-24f8fdb564bf")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "demonBoard"
+				(path "/d5196155-f624-4ab7-8c53-2366fd7d91ef"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)
