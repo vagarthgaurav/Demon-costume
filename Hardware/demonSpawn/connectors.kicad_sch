@@ -3592,6 +3592,16 @@
 		)
 		(uuid "868dff8f-09dd-435e-a22b-12c39ecd9485")
 	)
+	(polyline
+		(pts
+			(xy 104.14 21.59) (xy 198.12 21.59)
+		)
+		(stroke
+			(width 0.5)
+			(type solid)
+		)
+		(uuid "87abc4d2-4a58-48c9-9438-7f3473c44a31")
+	)
 	(wire
 		(pts
 			(xy 82.55 154.94) (xy 82.55 157.48)

@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "Demon board")
-		(rev "0.1")
-		(company "mangoByte")
+		(date "2026-01-05")
+		(company "Vagarth Gaurav")
 	)
 	(lib_symbols)
 	(text "DEMON BOARD"

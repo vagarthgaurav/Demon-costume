@@ -3098,6 +3098,16 @@
 		)
 		(uuid "bd168ea1-1e0e-437d-9eca-fda87198c91c")
 	)
+	(polyline
+		(pts
+			(xy 128.27 21.59) (xy 186.69 21.59)
+		)
+		(stroke
+			(width 0.5)
+			(type solid)
+		)
+		(uuid "be13256b-7dce-4179-96a8-bca6a09534f6")
+	)
 	(wire
 		(pts
 			(xy 237.49 81.28) (xy 236.22 81.28)

@@ -4,6 +4,11 @@
 	(generator_version "9.0")
 	(uuid "f6e9da88-6fb7-4d5f-a921-ae870466754a")
 	(paper "A4")
+	(title_block
+		(title "Demon Spawn Remote")
+		(date "2026-01-05")
+		(company "Vagarth Gaurav")
+	)
 	(lib_symbols)
 	(text "Demon spawn remote"
 		(exclude_from_sim no)
