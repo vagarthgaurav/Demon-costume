@@ -4470,7 +4470,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "10k"
 			(at 303.784 221.234 0)
 			(effects
 				(font
@@ -6109,7 +6109,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "10k"
 			(at 307.594 104.394 0)
 			(effects
 				(font
@@ -6303,7 +6303,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "a23584a6-bdf2-4bea-b3e8-374635e34fc9")
 		(property "Reference" "C24"
 			(at 297.942 98.044 0)

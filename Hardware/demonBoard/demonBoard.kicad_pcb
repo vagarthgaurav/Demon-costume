@@ -242,7 +242,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "10k"
 			(at 0 1.17 0)
 			(layer "F.Fab")
 			(uuid "043b2777-d512-4f0a-83de-061601029988")
@@ -2057,7 +2057,7 @@
 				)
 			)
 		)
-		(property "Value" "22u"
+		(property "Value" "22u/25V"
 			(at 0 1.68 90)
 			(layer "F.Fab")
 			(uuid "d7b601e3-4e7c-4052-bec1-ff09db8b5edb")
@@ -4771,7 +4771,7 @@
 				)
 			)
 		)
-		(property "Value" "0R"
+		(property "Value" "22R"
 			(at 0 1.17 180)
 			(layer "F.Fab")
 			(uuid "15a10950-02ef-4bea-ae9f-0f8467fe3d51")
@@ -9191,7 +9191,7 @@
 				)
 			)
 		)
-		(property "Value" "110R"
+		(property "Value" "10k"
 			(at 0 1.17 0)
 			(layer "F.Fab")
 			(uuid "6544f34f-7e51-4f6a-bd33-4662ddfee03f")
@@ -11898,7 +11898,7 @@
 				)
 			)
 		)
-		(property "Value" "22u"
+		(property "Value" "22u/25V"
 			(at 0 1.68 90)
 			(layer "F.Fab")
 			(uuid "1132af57-bf58-4320-b027-cb6236e5820e")
@@ -12440,7 +12440,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "10k"
 			(at 0 1.17 0)
 			(layer "F.Fab")
 			(uuid "e917c323-50d3-43ef-8560-827f3294d7cc")
@@ -16943,7 +16943,7 @@
 				)
 			)
 		)
-		(property "Value" "47n"
+		(property "Value" "470p"
 			(at 0 1.16 90)
 			(layer "F.Fab")
 			(uuid "c98082f0-84ed-4e6b-99e7-ef46ef9869f2")
@@ -18000,7 +18000,7 @@
 				)
 			)
 		)
-		(property "Value" "68p"
+		(property "Value" "8.7p"
 			(at 0 1.16 90)
 			(layer "F.Fab")
 			(uuid "891f500b-1d8d-40f2-b1cf-7dd1e2201db5")
@@ -18039,7 +18039,7 @@
 		(path "/30bfcba6-b840-4c1f-8e14-83db72034865/fda1984d-25af-49a0-a837-df502feadb7c")
 		(sheetname "/Voltage regulators and voltage sense/")
 		(sheetfile "voltage_regulators_and_voltage_sense.kicad_sch")
-		(attr smd)
+		(attr smd dnp)
 		(fp_line
 			(start 0.91 -0.46)
 			(end 0.91 0.46)
@@ -20405,7 +20405,7 @@
 		(path "/30bfcba6-b840-4c1f-8e14-83db72034865/a23584a6-bdf2-4bea-b3e8-374635e34fc9")
 		(sheetname "/Voltage regulators and voltage sense/")
 		(sheetfile "voltage_regulators_and_voltage_sense.kicad_sch")
-		(attr smd dnp)
+		(attr smd)
 		(fp_line
 			(start 3.41 -3.41)
 			(end 3.41 -1.06)
@@ -20995,7 +20995,7 @@
 				)
 			)
 		)
-		(property "Value" "0R"
+		(property "Value" "22R"
 			(at 0 1.17 180)
 			(layer "F.Fab")
 			(uuid "59c7eef8-995b-4eb1-ad87-5e02527f5ad5")
@@ -24425,7 +24425,7 @@
 				)
 			)
 		)
-		(property "Value" "22.1k"
+		(property "Value" "82k"
 			(at 0 1.17 270)
 			(layer "F.Fab")
 			(uuid "4cad2e24-0ae3-4f4a-ae22-aaac97fff47b")
@@ -25607,6 +25607,36 @@
 		(uuid "ea5e4b96-7bb1-4586-a9ee-be918067ddc8")
 	)
 	(gr_line
+		(start 111.115 64.475)
+		(end 137.89 84.725)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "0d8efc86-0de1-409b-aafa-f61db4913991")
+	)
+	(gr_line
+		(start 137.89 84.775)
+		(end 137.015 84.775)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "13afdc07-2581-4c3d-a2f7-78117275a88c")
+	)
+	(gr_line
+		(start 137.89 84.7)
+		(end 137.89 83.95)
+		(stroke
+			(width 0.3)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "967d0e1c-15f2-4e6a-beca-0bd4363d9d11")
+	)
+	(gr_line
 		(start 115.49 143.2)
 		(end 115.49 63.2)
 		(stroke
@@ -25697,6 +25727,18 @@
 		(locked yes)
 		(layer "Edge.Cuts")
 		(uuid "bada2a97-94bb-40ec-8a6e-f96018145704")
+	)
+	(gr_text "Trace missing,\nmust solder external wire"
+		(at 93.565 63.85 0)
+		(layer "Dwgs.User")
+		(uuid "eec93a05-c449-4075-9ddf-d154c1cff1c7")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
 	)
 	(dimension
 		(type orthogonal)

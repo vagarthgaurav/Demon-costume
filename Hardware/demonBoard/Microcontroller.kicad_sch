@@ -7393,7 +7393,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "110R"
+		(property "Value" "10k"
 			(at 325.374 106.934 0)
 			(effects
 				(font
@@ -8070,7 +8070,7 @@
 				)
 			)
 		)
-		(property "Value" "0R"
+		(property "Value" "22R"
 			(at 129.032 199.39 90)
 			(effects
 				(font
@@ -8338,7 +8338,7 @@
 				)
 			)
 		)
-		(property "Value" "0R"
+		(property "Value" "22R"
 			(at 129.286 194.056 90)
 			(effects
 				(font
