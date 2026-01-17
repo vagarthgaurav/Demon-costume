@@ -25607,36 +25607,6 @@
 		(uuid "ea5e4b96-7bb1-4586-a9ee-be918067ddc8")
 	)
 	(gr_line
-		(start 111.115 64.475)
-		(end 137.89 84.725)
-		(stroke
-			(width 0.3)
-			(type solid)
-		)
-		(layer "Dwgs.User")
-		(uuid "0d8efc86-0de1-409b-aafa-f61db4913991")
-	)
-	(gr_line
-		(start 137.89 84.775)
-		(end 137.015 84.775)
-		(stroke
-			(width 0.3)
-			(type solid)
-		)
-		(layer "Dwgs.User")
-		(uuid "13afdc07-2581-4c3d-a2f7-78117275a88c")
-	)
-	(gr_line
-		(start 137.89 84.7)
-		(end 137.89 83.95)
-		(stroke
-			(width 0.3)
-			(type solid)
-		)
-		(layer "Dwgs.User")
-		(uuid "967d0e1c-15f2-4e6a-beca-0bd4363d9d11")
-	)
-	(gr_line
 		(start 115.49 143.2)
 		(end 115.49 63.2)
 		(stroke
@@ -25727,18 +25697,6 @@
 		(locked yes)
 		(layer "Edge.Cuts")
 		(uuid "bada2a97-94bb-40ec-8a6e-f96018145704")
-	)
-	(gr_text "Trace missing,\nmust solder external wire"
-		(at 93.565 63.85 0)
-		(layer "Dwgs.User")
-		(uuid "eec93a05-c449-4075-9ddf-d154c1cff1c7")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-			(justify left bottom)
-		)
 	)
 	(dimension
 		(type orthogonal)
@@ -28760,14 +28718,6 @@
 		(uuid "462a117a-ee30-4ca3-9276-f62428f86e51")
 	)
 	(segment
-		(start 136.64 84.85)
-		(end 141.84 84.85)
-		(width 0.55)
-		(layer "F.Cu")
-		(net 55)
-		(uuid "839d0f13-a356-44e3-b325-2ca41ec7ec23")
-	)
-	(segment
 		(start 136.615 84.875)
 		(end 136.64 84.85)
 		(width 0.55)
@@ -28790,14 +28740,6 @@
 		(layer "F.Cu")
 		(net 55)
 		(uuid "cb88f1d6-2858-487e-9e4b-8e3bcb2345b2")
-	)
-	(segment
-		(start 141.84 84.85)
-		(end 142.14 84.55)
-		(width 0.55)
-		(layer "F.Cu")
-		(net 55)
-		(uuid "d33b1e98-a9ff-4480-8800-6f6c9ab9ea1a")
 	)
 	(via
 		(at 142.14 84.55)
