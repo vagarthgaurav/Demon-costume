@@ -28,4 +28,4 @@ The remote that controls the main board. Also an ESP32-C3 Wroom, talks to the de
 
 Small board with a single WS2813B RGB LED. Boards can be chained together and they are screwed onto 3D printed thorns.
 
-<img src="images/ThornLight.JPG" width="500"/>
+<img src="images/thornLight.JPG" width="500"/>
