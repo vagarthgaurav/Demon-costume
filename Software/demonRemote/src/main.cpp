@@ -20,18 +20,12 @@ void setup() {
     pinMode(PIN_BTN_LED, INPUT_PULLUP);
     pinMode(PIN_BTN_SHOW_BATTERY, INPUT_PULLUP);
 
-    pinMode(PIN_CHARGE_EN, OUTPUT);
-    
-
     bat_indicator_init();
     charger_status_init();
     espnow_init();
 }
 
 void loop() {
-
-    digitalWrite(PIN_CHARGE_EN, LOW);
-
     bool wingUp = digitalRead(PIN_BTN_WING_UP) == LOW;
     bool wingDown = digitalRead(PIN_BTN_WING_DOWN) == LOW;
     bool led = digitalRead(PIN_BTN_LED) == LOW;
@@ -60,9 +54,8 @@ void loop() {
 
     charger_status_update();
     ChargerState charger = charger_status_get();
-    if (charger != ChargerState::NO_INPUT) {
-        bat_indicator_show_charger(charger, s_last_battery_mv);
-    } else {
+    bat_indicator_show_charger(charger, s_last_battery_mv);
+    if (charger == ChargerState::NO_INPUT) {
         bat_indicator_update();
     }
 }
