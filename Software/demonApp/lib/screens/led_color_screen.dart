@@ -69,10 +69,40 @@ class LedColorScreen extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(height: 20),
+          Panel(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const PanelLabel('Chains'),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: [
+                    for (final entry in _chainLabels.entries)
+                      _ChainToggle(
+                        label: entry.value,
+                        enabled: deviceState.isChainEnabled(entry.key),
+                        onChanged: (enabled) => service.setLedChainEnabled(entry.key, enabled),
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
+
+  static const _chainLabels = {
+    LedChain.right: 'Right',
+    LedChain.left: 'Left',
+    LedChain.auxRight: 'Aux Right',
+    LedChain.auxLeft: 'Aux Left',
+    LedChain.tail: 'Tail',
+  };
 
   Widget _channelSlider({
     required String label,
@@ -98,6 +128,52 @@ class LedColorScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+/// Pill-shaped on/off toggle for a single LED chain.
+class _ChainToggle extends StatelessWidget {
+  const _ChainToggle({required this.label, required this.enabled, required this.onChanged});
+
+  final String label;
+  final bool enabled;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
+      onTap: () => onChanged(!enabled),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: BoxDecoration(
+          gradient: enabled ? AppColors.accentGradient : null,
+          color: enabled ? null : AppColors.surface,
+          border: Border.all(color: enabled ? Colors.transparent : AppColors.border),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              enabled ? Icons.toggle_on : Icons.toggle_off_outlined,
+              size: 18,
+              color: enabled ? Colors.black87 : AppColors.textSecondary,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              label.toUpperCase(),
+              style: AppTheme.mono(
+                size: 12,
+                weight: FontWeight.w600,
+                color: enabled ? Colors.black87 : AppColors.textSecondary,
+              ).copyWith(letterSpacing: 0.6),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

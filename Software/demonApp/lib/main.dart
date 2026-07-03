@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'screens/home_screen.dart';
-import 'services/mock_demon_service.dart';
+import 'services/ble_demon_service.dart';
 import 'theme/app_theme.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class DemonApp extends StatelessWidget {
       title: 'Demon Board',
       themeMode: ThemeMode.dark,
       darkTheme: AppTheme.dark,
-      home: HomeScreen(service: MockDemonService()),
+      home: HomeScreen(service: BleDemonService()),
     );
   }
 }

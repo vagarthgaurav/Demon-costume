@@ -38,6 +38,9 @@ dependencies:
   # Real typography instead of the default Material font.
   google_fonts: ^6.2.1
 
+  # BLE connection to the demon board (Android + Linux desktop support)
+  universal_ble: ^2.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

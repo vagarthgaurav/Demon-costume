@@ -12,6 +12,7 @@ abstract class DemonService {
   Future<void> connect();
   Future<void> disconnect();
   Future<void> setLedColor(Color color);
+  Future<void> setLedChainEnabled(LedChain chain, bool enabled);
   Future<void> setWingSpeed(int percent);
 
   void dispose();

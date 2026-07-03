@@ -64,6 +64,13 @@ class MockDemonService implements DemonService {
   }
 
   @override
+  Future<void> setLedChainEnabled(LedChain chain, bool enabled) async {
+    final mask = enabled ? (_current.ledChainMask | chain.bit) : (_current.ledChainMask & ~chain.bit);
+    _current = _current.copyWith(ledChainMask: mask);
+    _controller.add(_current);
+  }
+
+  @override
   Future<void> setWingSpeed(int percent) async {
     _current = _current.copyWith(wingSpeedPercent: percent);
     _controller.add(_current);
