@@ -41,6 +41,9 @@ dependencies:
   # BLE connection to the demon board (Android + Linux desktop support)
   universal_ble: ^2.1.0
 
+  # Color picker dialog for per-chain LED color selection
+  flutter_colorpicker: ^1.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

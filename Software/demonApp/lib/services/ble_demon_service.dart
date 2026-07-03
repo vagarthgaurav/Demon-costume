@@ -16,6 +16,7 @@ class BleDemonService implements DemonService {
   static const _serviceUuid = '4100b1e3-0565-4526-aa7b-9cd9f36af43c';
   static const _ledColorUuid = 'ad2644e3-2e1a-4210-879e-92ac55e68914';
   static const _ledEnableUuid = '882b1dd0-1e52-4254-9911-0e4dbaee904d';
+  static const _ledBrightnessUuid = '79e16dd0-271e-4fae-9cf9-e50a620f3f38';
   static const _wingSpeedUuid = '9e3b36af-0877-414e-9562-0219fc809417';
   static const _wingsBatteryUuid = '6fd30705-3e6a-49ec-a272-d14b3bfd259f';
   static const _remoteBatteryUuid = '4f271645-84c3-4486-9627-c751398f9d42';
@@ -29,6 +30,7 @@ class BleDemonService implements DemonService {
   BleDevice? _device;
   BleCharacteristic? _ledColorChar;
   BleCharacteristic? _ledEnableChar;
+  BleCharacteristic? _ledBrightnessChar;
   BleCharacteristic? _wingSpeedChar;
   StreamSubscription<bool>? _connectionSub;
   StreamSubscription<Uint8List>? _wingsBatterySub;
@@ -74,6 +76,8 @@ class BleDemonService implements DemonService {
 
     _ledColorChar = service.characteristics.firstWhere((c) => c.uuid.toLowerCase() == _ledColorUuid);
     _ledEnableChar = service.characteristics.firstWhere((c) => c.uuid.toLowerCase() == _ledEnableUuid);
+    _ledBrightnessChar =
+        service.characteristics.firstWhere((c) => c.uuid.toLowerCase() == _ledBrightnessUuid);
     _wingSpeedChar = service.characteristics.firstWhere((c) => c.uuid.toLowerCase() == _wingSpeedUuid);
     final wingsBatteryChar =
         service.characteristics.firstWhere((c) => c.uuid.toLowerCase() == _wingsBatteryUuid);
@@ -94,6 +98,14 @@ class BleDemonService implements DemonService {
     });
 
     _emit(_current.copyWith(connected: true, ledChainMask: LedChain.allMask));
+
+    // Push whatever the app is currently showing to the board, so the LEDs
+    // match the UI right away instead of sitting at whatever state the
+    // board booted up in (e.g. off/black).
+    for (final chain in LedChain.values) {
+      await setLedColor(_current.colorFor(chain), chain: chain);
+      await setLedChainEnabled(chain, _current.isChainEnabled(chain));
+    }
   }
 
   int _channel(double component) => (component * 255.0).round().clamp(0, 255);
@@ -114,14 +126,25 @@ class BleDemonService implements DemonService {
   }
 
   @override
-  Future<void> setLedColor(Color color) async {
+  Future<void> setLedColor(Color color, {LedChain? chain}) async {
     final char = _ledColorChar;
     if (char == null) return;
+    final mask = chain?.bit ?? LedChain.allMask;
     await char.write(
-      [_channel(color.r), _channel(color.g), _channel(color.b)],
-      withResponse: true,
+      [mask, _channel(color.r), _channel(color.g), _channel(color.b)],
+      withResponse: false,
     );
-    _emit(_current.copyWith(ledColor: color));
+    _emit(_current.withChainColor(chain, color));
+  }
+
+  @override
+  Future<void> setLedBrightness(int percent, {LedChain? chain}) async {
+    final char = _ledBrightnessChar;
+    if (char == null) return;
+    final clamped = percent.clamp(0, 100);
+    final mask = chain?.bit ?? LedChain.allMask;
+    await char.write([mask, (clamped * 255 / 100).round()], withResponse: false);
+    _emit(_current.withChainBrightness(chain, clamped));
   }
 
   @override
@@ -137,7 +160,7 @@ class BleDemonService implements DemonService {
   Future<void> setWingSpeed(int percent) async {
     final char = _wingSpeedChar;
     if (char == null) return;
-    await char.write([percent.clamp(0, 100)], withResponse: true);
+    await char.write([percent.clamp(0, 100)], withResponse: false);
     _emit(_current.copyWith(wingSpeedPercent: percent));
   }
 

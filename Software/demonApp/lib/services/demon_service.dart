@@ -11,7 +11,14 @@ abstract class DemonService {
 
   Future<void> connect();
   Future<void> disconnect();
-  Future<void> setLedColor(Color color);
+
+  /// Sets the color of [chain], or of every chain if [chain] is null.
+  Future<void> setLedColor(Color color, {LedChain? chain});
+
+  /// Sets the brightness (0-100) of [chain], or of every chain if [chain]
+  /// is null.
+  Future<void> setLedBrightness(int percent, {LedChain? chain});
+
   Future<void> setLedChainEnabled(LedChain chain, bool enabled);
   Future<void> setWingSpeed(int percent);
 

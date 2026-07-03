@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import '../models/device_state.dart';
 import '../services/demon_service.dart';
@@ -11,91 +12,6 @@ class LedColorScreen extends StatelessWidget {
   final DemonService service;
   final DeviceState deviceState;
 
-  @override
-  Widget build(BuildContext context) {
-    final color = deviceState.ledColor;
-    final hex = '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}';
-
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          Container(
-            height: 88,
-            decoration: BoxDecoration(
-              color: color,
-              border: Border.all(color: AppColors.border),
-              borderRadius: BorderRadius.circular(14),
-              boxShadow: [
-                BoxShadow(
-                  color: color.withValues(alpha: 0.45),
-                  blurRadius: 32,
-                  spreadRadius: -4,
-                  offset: const Offset(0, 10),
-                ),
-              ],
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              hex,
-              style: AppTheme.mono(
-                size: 13,
-                color: color.computeLuminance() > 0.4 ? Colors.black87 : Colors.white,
-                weight: FontWeight.w600,
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          Panel(
-            child: Column(
-              children: [
-                const PanelLabel('Color'),
-                const SizedBox(height: 12),
-                _channelSlider(
-                  label: 'R',
-                  value: color.r * 255,
-                  onChanged: (v) => service.setLedColor(color.withValues(red: v / 255)),
-                ),
-                _channelSlider(
-                  label: 'G',
-                  value: color.g * 255,
-                  onChanged: (v) => service.setLedColor(color.withValues(green: v / 255)),
-                ),
-                _channelSlider(
-                  label: 'B',
-                  value: color.b * 255,
-                  onChanged: (v) => service.setLedColor(color.withValues(blue: v / 255)),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 20),
-          Panel(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const PanelLabel('Chains'),
-                const SizedBox(height: 12),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: [
-                    for (final entry in _chainLabels.entries)
-                      _ChainToggle(
-                        label: entry.value,
-                        enabled: deviceState.isChainEnabled(entry.key),
-                        onChanged: (enabled) => service.setLedChainEnabled(entry.key, enabled),
-                      ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   static const _chainLabels = {
     LedChain.right: 'Right',
     LedChain.left: 'Left',
@@ -104,27 +20,134 @@ class LedColorScreen extends StatelessWidget {
     LedChain.tail: 'Tail',
   };
 
-  Widget _channelSlider({
-    required String label,
-    required double value,
-    required ValueChanged<double> onChanged,
-  }) {
-    return Row(
-      children: [
-        SizedBox(width: 20, child: Text(label, style: AppTheme.mono(size: 13))),
-        Expanded(
-          child: Slider(
-            value: value.clamp(0, 255),
-            min: 0,
-            max: 255,
-            onChanged: onChanged,
+  @override
+  Widget build(BuildContext context) {
+    final allEnabled = deviceState.ledChainMask == LedChain.allMask;
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          Panel(
+            child: _ChainControl(
+              label: 'All Chains',
+              color: deviceState.colorFor(LedChain.right),
+              enabled: allEnabled,
+              onColorChanged: (color) => service.setLedColor(color),
+              onEnabledChanged: (enabled) async {
+                for (final chain in LedChain.values) {
+                  await service.setLedChainEnabled(chain, enabled);
+                }
+              },
+            ),
+          ),
+          const SizedBox(height: 20),
+          for (final entry in _chainLabels.entries) ...[
+            Panel(
+              child: _ChainControl(
+                label: entry.value,
+                color: deviceState.colorFor(entry.key),
+                enabled: deviceState.isChainEnabled(entry.key),
+                onColorChanged: (color) => service.setLedColor(color, chain: entry.key),
+                onEnabledChanged: (enabled) => service.setLedChainEnabled(entry.key, enabled),
+              ),
+            ),
+            const SizedBox(height: 20),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+/// One chain's controls: color swatch (opens a picker) and an on/off toggle.
+/// Also used for the "All Chains" master control.
+class _ChainControl extends StatelessWidget {
+  const _ChainControl({
+    required this.label,
+    required this.color,
+    required this.enabled,
+    required this.onColorChanged,
+    required this.onEnabledChanged,
+  });
+
+  final String label;
+  final Color color;
+  final bool enabled;
+  final ValueChanged<Color> onColorChanged;
+  final ValueChanged<bool> onEnabledChanged;
+
+  Future<void> _pickColor(BuildContext context) async {
+    Color picked = color;
+    await showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.surfaceRaised,
+        title: Text(label, style: AppTheme.mono(size: 14, color: AppColors.textPrimary)),
+        content: SingleChildScrollView(
+          child: ColorPicker(
+            pickerColor: color,
+            onColorChanged: (c) {
+              picked = c;
+              onColorChanged(c);
+            },
+            enableAlpha: false,
+            labelTypes: const [],
+            pickerAreaHeightPercent: 0.7,
           ),
         ),
-        SizedBox(
-          width: 36,
-          child: Text(
-            value.round().toString().padLeft(3, '0'),
-            style: AppTheme.mono(size: 13, color: AppColors.textSecondary),
+        actions: [
+          TextButton(
+            onPressed: () {
+              onColorChanged(picked);
+              Navigator.of(context).pop();
+            },
+            child: const Text('Done'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Expanded(child: PanelLabel(label)),
+            _EnableToggle(enabled: enabled, onChanged: onEnabledChanged),
+          ],
+        ),
+        const SizedBox(height: 14),
+        InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: () => _pickColor(context),
+          child: Container(
+            height: 56,
+            decoration: BoxDecoration(
+              color: color,
+              border: Border.all(color: AppColors.border),
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: color.withValues(alpha: 0.4),
+                  blurRadius: 24,
+                  spreadRadius: -6,
+                  offset: const Offset(0, 8),
+                ),
+              ],
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}',
+              style: AppTheme.mono(
+                size: 13,
+                color: color.computeLuminance() > 0.4 ? Colors.black87 : Colors.white,
+                weight: FontWeight.w600,
+              ),
+            ),
           ),
         ),
       ],
@@ -132,11 +155,10 @@ class LedColorScreen extends StatelessWidget {
   }
 }
 
-/// Pill-shaped on/off toggle for a single LED chain.
-class _ChainToggle extends StatelessWidget {
-  const _ChainToggle({required this.label, required this.enabled, required this.onChanged});
+/// Small pill on/off toggle used next to a chain's label.
+class _EnableToggle extends StatelessWidget {
+  const _EnableToggle({required this.enabled, required this.onChanged});
 
-  final String label;
   final bool enabled;
   final ValueChanged<bool> onChanged;
 
@@ -147,7 +169,7 @@ class _ChainToggle extends StatelessWidget {
       onTap: () => onChanged(!enabled),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: BoxDecoration(
           gradient: enabled ? AppColors.accentGradient : null,
           color: enabled ? null : AppColors.surface,
@@ -164,7 +186,7 @@ class _ChainToggle extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             Text(
-              label.toUpperCase(),
+              enabled ? 'ON' : 'OFF',
               style: AppTheme.mono(
                 size: 12,
                 weight: FontWeight.w600,

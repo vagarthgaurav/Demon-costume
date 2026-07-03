@@ -58,8 +58,14 @@ class MockDemonService implements DemonService {
   }
 
   @override
-  Future<void> setLedColor(Color color) async {
-    _current = _current.copyWith(ledColor: color);
+  Future<void> setLedColor(Color color, {LedChain? chain}) async {
+    _current = _current.withChainColor(chain, color);
+    _controller.add(_current);
+  }
+
+  @override
+  Future<void> setLedBrightness(int percent, {LedChain? chain}) async {
+    _current = _current.withChainBrightness(chain, percent.clamp(0, 100));
     _controller.add(_current);
   }
 

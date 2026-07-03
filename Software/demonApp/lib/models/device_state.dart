@@ -24,16 +24,18 @@ enum LedChain {
 class DeviceState {
   const DeviceState({
     required this.connected,
-    required this.ledColor,
+    required this.ledColors,
+    required this.ledBrightness,
     required this.ledChainMask,
     required this.wingsBatteryMillivolts,
     required this.remoteBatteryMillivolts,
     required this.wingSpeedPercent,
   });
 
-  factory DeviceState.disconnected() => const DeviceState(
+  factory DeviceState.disconnected() => DeviceState(
         connected: false,
-        ledColor: Colors.red,
+        ledColors: {for (final chain in LedChain.values) chain: Colors.red},
+        ledBrightness: {for (final chain in LedChain.values) chain: 100},
         ledChainMask: LedChain.allMask,
         wingsBatteryMillivolts: 0,
         remoteBatteryMillivolts: 0,
@@ -49,13 +51,17 @@ class DeviceState {
   static const _remoteMaxMv = 12600;
 
   final bool connected;
-  final Color ledColor;
+  final Map<LedChain, Color> ledColors;
+  final Map<LedChain, int> ledBrightness;
   final int ledChainMask;
   final int wingsBatteryMillivolts;
   final int remoteBatteryMillivolts;
   final int wingSpeedPercent;
 
   bool isChainEnabled(LedChain chain) => (ledChainMask & chain.bit) != 0;
+
+  Color colorFor(LedChain chain) => ledColors[chain] ?? Colors.red;
+  int brightnessFor(LedChain chain) => ledBrightness[chain] ?? 100;
 
   double get wingsBatteryVolts => wingsBatteryMillivolts / 1000.0;
   double get remoteBatteryVolts => remoteBatteryMillivolts / 1000.0;
@@ -74,7 +80,8 @@ class DeviceState {
 
   DeviceState copyWith({
     bool? connected,
-    Color? ledColor,
+    Map<LedChain, Color>? ledColors,
+    Map<LedChain, int>? ledBrightness,
     int? ledChainMask,
     int? wingsBatteryMillivolts,
     int? remoteBatteryMillivolts,
@@ -82,11 +89,32 @@ class DeviceState {
   }) {
     return DeviceState(
       connected: connected ?? this.connected,
-      ledColor: ledColor ?? this.ledColor,
+      ledColors: ledColors ?? this.ledColors,
+      ledBrightness: ledBrightness ?? this.ledBrightness,
       ledChainMask: ledChainMask ?? this.ledChainMask,
       wingsBatteryMillivolts: wingsBatteryMillivolts ?? this.wingsBatteryMillivolts,
       remoteBatteryMillivolts: remoteBatteryMillivolts ?? this.remoteBatteryMillivolts,
       wingSpeedPercent: wingSpeedPercent ?? this.wingSpeedPercent,
     );
+  }
+
+  /// Returns a copy with [color] applied to [chain], or to every chain if
+  /// [chain] is null (the "all" convenience control).
+  DeviceState withChainColor(LedChain? chain, Color color) {
+    final next = Map<LedChain, Color>.from(ledColors);
+    for (final c in chain == null ? LedChain.values : [chain]) {
+      next[c] = color;
+    }
+    return copyWith(ledColors: next);
+  }
+
+  /// Returns a copy with [brightness] (0-100) applied to [chain], or to
+  /// every chain if [chain] is null (the "all" convenience control).
+  DeviceState withChainBrightness(LedChain? chain, int brightness) {
+    final next = Map<LedChain, int>.from(ledBrightness);
+    for (final c in chain == null ? LedChain.values : [chain]) {
+      next[c] = brightness;
+    }
+    return copyWith(ledBrightness: next);
   }
 }
