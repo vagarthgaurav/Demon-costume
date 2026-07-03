@@ -3,17 +3,31 @@ import 'package:google_fonts/google_fonts.dart';
 
 /// Visual identity for the demon board control panel.
 ///
-/// This is a single instrument, not a consumer app: dark-only, sharp edges,
-/// one accent color, monospace for anything that's a live readout.
+/// Matched to the actual costume: sky blue into mint green, carried as a
+/// gradient everywhere the accent appears (buttons, slider fills,
+/// highlights). Dark, cool neutrals underneath; monospace for live readouts.
 abstract final class AppColors {
-  static const background = Color(0xFF0B0B0D);
-  static const surface = Color(0xFF17171B);
-  static const surfaceRaised = Color(0xFF1D1D22);
-  static const border = Color(0xFF2C2C33);
-  static const textPrimary = Color(0xFFF3F1EC);
-  static const textSecondary = Color(0xFF8B8B93);
-  static const accent = Color(0xFFE2483B);
-  static const good = Color(0xFF4CAF6D);
+  static const background = Color(0xFF0A0D10);
+  static const surface = Color(0xFF12181B);
+  static const surfaceRaised = Color(0xFF182124);
+  static const border = Color(0xFF232D31);
+  static const textPrimary = Color(0xFFF1F6F5);
+  static const textSecondary = Color(0xFF8C9BA1);
+
+  // Brand accent: sky blue into mint green. accentSolid is the flat
+  // fallback for icons and small text where a gradient can't be painted.
+  static const accentStart = Color(0xFF38BDF8);
+  static const accentEnd = Color(0xFF34D399);
+  static const accentSolid = Color(0xFF3FC9C0);
+  static const accentGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [accentStart, accentEnd],
+  );
+
+  // Reserved for low-battery/danger states - the brand accent no longer
+  // reads as "warning", so this needs to be its own color.
+  static const warning = Color(0xFFF2545B);
 }
 
 class AppTheme {
@@ -28,9 +42,9 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.background,
       colorScheme: base.colorScheme.copyWith(
         surface: AppColors.background,
-        primary: AppColors.accent,
+        primary: AppColors.accentSolid,
         onPrimary: AppColors.textPrimary,
-        secondary: AppColors.accent,
+        secondary: AppColors.accentSolid,
       ),
       textTheme: textTheme,
       appBarTheme: AppBarTheme(
@@ -46,12 +60,13 @@ class AppTheme {
       ),
       dividerColor: AppColors.border,
       sliderTheme: SliderThemeData(
-        trackHeight: 2,
-        activeTrackColor: AppColors.accent,
+        trackHeight: 3,
+        trackShape: const _GradientTrackShape(),
+        activeTrackColor: AppColors.accentSolid,
         inactiveTrackColor: AppColors.border,
         thumbShape: const _BarThumbShape(),
         thumbColor: AppColors.textPrimary,
-        overlayColor: AppColors.accent.withValues(alpha: 0.12),
+        overlayColor: AppColors.accentSolid.withValues(alpha: 0.14),
         valueIndicatorColor: AppColors.surfaceRaised,
         valueIndicatorTextStyle: GoogleFonts.jetBrainsMono(
           color: AppColors.textPrimary,
@@ -62,7 +77,7 @@ class AppTheme {
         style: TextButton.styleFrom(
           foregroundColor: AppColors.textPrimary,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(2),
+            borderRadius: BorderRadius.circular(8),
             side: const BorderSide(color: AppColors.border),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -81,6 +96,60 @@ class AppTheme {
       fontSize: size,
       color: color ?? AppColors.textPrimary,
       fontWeight: weight ?? FontWeight.w500,
+    );
+  }
+}
+
+/// Paints the active portion of a slider track with the brand gradient
+/// instead of a flat fill.
+class _GradientTrackShape extends RoundedRectSliderTrackShape {
+  const _GradientTrackShape();
+
+  @override
+  void paint(
+    PaintingContext context,
+    Offset offset, {
+    required RenderBox parentBox,
+    required SliderThemeData sliderTheme,
+    required Animation<double> enableAnimation,
+    required Offset thumbCenter,
+    Offset? secondaryOffset,
+    bool isDiscrete = false,
+    bool isEnabled = false,
+    required TextDirection textDirection,
+    double additionalActiveTrackHeight = 0,
+  }) {
+    final trackRect = getPreferredRect(
+      parentBox: parentBox,
+      offset: offset,
+      sliderTheme: sliderTheme,
+      isEnabled: isEnabled,
+      isDiscrete: isDiscrete,
+    );
+    final canvas = context.canvas;
+    final radius = Radius.circular(trackRect.height / 2);
+
+    final inactiveRect = Rect.fromLTRB(
+      trackRect.left,
+      trackRect.top,
+      trackRect.right,
+      trackRect.bottom,
+    );
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(inactiveRect, radius),
+      Paint()..color = sliderTheme.inactiveTrackColor ?? AppColors.border,
+    );
+
+    final activeRect = Rect.fromLTRB(
+      trackRect.left,
+      trackRect.top,
+      thumbCenter.dx,
+      trackRect.bottom,
+    );
+    if (activeRect.width <= 0) return;
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(activeRect, radius),
+      Paint()..shader = AppColors.accentGradient.createShader(trackRect),
     );
   }
 }

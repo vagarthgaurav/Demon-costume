@@ -23,7 +23,13 @@ class WingSpeedScreen extends StatelessWidget {
           children: [
             const PanelLabel('Wing speed'),
             const SizedBox(height: 20),
-            Text('$percent%', style: AppTheme.mono(size: 44, weight: FontWeight.w600)),
+            ShaderMask(
+              shaderCallback: (rect) => AppColors.accentGradient.createShader(rect),
+              child: Text(
+                '$percent%',
+                style: AppTheme.mono(size: 44, weight: FontWeight.w600, color: Colors.white),
+              ),
+            ),
             const SizedBox(height: 12),
             Slider(
               value: percent.toDouble(),

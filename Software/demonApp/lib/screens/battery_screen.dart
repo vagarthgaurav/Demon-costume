@@ -59,19 +59,34 @@ class _BatteryPanel extends StatelessWidget {
           const SizedBox(height: 20),
           Text(
             connected ? '${volts.toStringAsFixed(2)}V' : '--.--V',
-            style: AppTheme.mono(size: 36, weight: FontWeight.w600),
+            style: AppTheme.mono(
+              size: 36,
+              weight: FontWeight.w600,
+              color: low ? AppColors.warning : null,
+            ),
           ),
           const SizedBox(height: 20),
           LayoutBuilder(
             builder: (context, constraints) {
               return Stack(
                 children: [
-                  Container(height: 6, width: constraints.maxWidth, color: AppColors.border),
+                  Container(
+                    height: 6,
+                    width: constraints.maxWidth,
+                    decoration: BoxDecoration(
+                      color: AppColors.border,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                  ),
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
                     height: 6,
                     width: constraints.maxWidth * (connected ? fraction : 0),
-                    color: low ? AppColors.accent : AppColors.good,
+                    decoration: BoxDecoration(
+                      gradient: low ? null : AppColors.accentGradient,
+                      color: low ? AppColors.warning : null,
+                      borderRadius: BorderRadius.circular(3),
+                    ),
                   ),
                 ],
               );

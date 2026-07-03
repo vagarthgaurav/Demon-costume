@@ -15,7 +15,7 @@ class StatusDot extends StatelessWidget {
       height: 8,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: connected ? AppColors.good : AppColors.textSecondary,
+        color: connected ? AppColors.accentSolid : AppColors.textSecondary,
       ),
     );
   }

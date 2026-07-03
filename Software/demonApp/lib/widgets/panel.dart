@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../theme/app_theme.dart';
 
-/// A bordered instrument panel. No elevation, no shadow, no rounded-card
-/// look - a hairline border communicates grouping instead.
+/// A bordered instrument panel. Soft corners, a faint top-to-bottom lift in
+/// tone, and a low black shadow give it just enough depth to read as a
+/// physical surface without turning into a generic elevated Material card.
 class Panel extends StatelessWidget {
   const Panel({super.key, required this.child, this.padding});
 
@@ -15,9 +16,20 @@ class Panel extends StatelessWidget {
     return Container(
       padding: padding ?? const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        gradient: const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [AppColors.surfaceRaised, AppColors.surface],
+        ),
         border: Border.all(color: AppColors.border),
-        borderRadius: BorderRadius.circular(2),
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.35),
+            blurRadius: 24,
+            offset: const Offset(0, 12),
+          ),
+        ],
       ),
       child: child,
     );

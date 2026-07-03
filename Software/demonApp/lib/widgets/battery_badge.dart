@@ -27,7 +27,7 @@ class BatteryBadge extends StatelessWidget {
     final color = !connected
         ? AppColors.textSecondary
         : low
-            ? AppColors.accent
+            ? AppColors.warning
             : AppColors.textPrimary;
 
     return Tooltip(

@@ -4,6 +4,7 @@ import '../models/device_state.dart';
 import '../services/demon_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/battery_badge.dart';
+import '../widgets/gradient_button.dart';
 import '../widgets/status_dot.dart';
 import 'battery_screen.dart';
 import 'led_color_screen.dart';
@@ -57,33 +58,30 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(width: 20),
               Padding(
                 padding: const EdgeInsets.only(right: 16),
-                child: TextButton(
-                  onPressed: deviceState.connected
-                      ? widget.service.disconnect
-                      : widget.service.connect,
-                  child: Text(deviceState.connected ? 'DISCONNECT' : 'CONNECT'),
-                ),
+                child: deviceState.connected
+                    ? TextButton(
+                        onPressed: widget.service.disconnect,
+                        child: const Text('DISCONNECT'),
+                      )
+                    : GradientButton(
+                        label: 'CONNECT',
+                        onPressed: widget.service.connect,
+                      ),
               ),
             ],
           ),
-          body: Column(
+          body: IndexedStack(
+            index: _tabIndex,
             children: [
-              _TabStrip(
-                labels: _tabs,
-                selectedIndex: _tabIndex,
-                onSelected: (i) => setState(() => _tabIndex = i),
-              ),
-              Expanded(
-                child: IndexedStack(
-                  index: _tabIndex,
-                  children: [
-                    LedColorScreen(service: widget.service, deviceState: deviceState),
-                    BatteryScreen(deviceState: deviceState),
-                    WingSpeedScreen(service: widget.service, deviceState: deviceState),
-                  ],
-                ),
-              ),
+              LedColorScreen(service: widget.service, deviceState: deviceState),
+              BatteryScreen(deviceState: deviceState),
+              WingSpeedScreen(service: widget.service, deviceState: deviceState),
             ],
+          ),
+          bottomNavigationBar: _TabStrip(
+            labels: _tabs,
+            selectedIndex: _tabIndex,
+            onSelected: (i) => setState(() => _tabIndex = i),
           ),
         );
       },
@@ -91,8 +89,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-/// Hairline-underlined tab strip - reads as an instrument selector, not a
-/// rounded Material bottom nav.
+/// Hairline-topped tab strip pinned to the bottom - reads as an instrument
+/// selector, not a rounded Material bottom nav.
 class _TabStrip extends StatelessWidget {
   const _TabStrip({
     required this.labels,
@@ -106,43 +104,49 @@ class _TabStrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: AppColors.border)),
-      ),
-      child: Row(
-        children: [
-          for (var i = 0; i < labels.length; i++)
-            Expanded(
-              child: InkWell(
-                onTap: () => onSelected(i),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 150),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: i == selectedIndex ? AppColors.accent : Colors.transparent,
-                        width: 2,
+    return SafeArea(
+      child: Container(
+        decoration: const BoxDecoration(
+          border: Border(top: BorderSide(color: AppColors.border)),
+        ),
+        child: Row(
+          children: [
+            for (var i = 0; i < labels.length; i++)
+              Expanded(
+                child: InkWell(
+                  onTap: () => onSelected(i),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 150),
+                        height: 2,
+                        decoration: BoxDecoration(
+                          gradient: i == selectedIndex ? AppColors.accentGradient : null,
+                          color: i == selectedIndex ? null : Colors.transparent,
+                        ),
                       ),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      labels[i].toUpperCase(),
-                      style: AppTheme.mono(
-                        size: 12,
-                        color: i == selectedIndex
-                            ? AppColors.textPrimary
-                            : AppColors.textSecondary,
-                        weight: FontWeight.w600,
-                      ).copyWith(letterSpacing: 1.2),
-                    ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        child: Center(
+                          child: Text(
+                            labels[i].toUpperCase(),
+                            style: AppTheme.mono(
+                              size: 12,
+                              color: i == selectedIndex
+                                  ? AppColors.textPrimary
+                                  : AppColors.textSecondary,
+                              weight: FontWeight.w600,
+                            ).copyWith(letterSpacing: 1.2),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }

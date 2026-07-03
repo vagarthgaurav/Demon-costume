@@ -25,7 +25,15 @@ class LedColorScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: color,
               border: Border.all(color: AppColors.border),
-              borderRadius: BorderRadius.circular(2),
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: [
+                BoxShadow(
+                  color: color.withValues(alpha: 0.45),
+                  blurRadius: 32,
+                  spreadRadius: -4,
+                  offset: const Offset(0, 10),
+                ),
+              ],
             ),
             alignment: Alignment.center,
             child: Text(
