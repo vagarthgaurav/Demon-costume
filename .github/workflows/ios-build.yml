@@ -26,7 +26,10 @@ jobs:
 
       - name: Set Bluetooth usage description
         run: |
-          /usr/libexec/PlistBuddy -c "Add :NSBluetoothAlwaysUsageDescription string 'Demon Costume uses Bluetooth to connect to and control your costume's LED board.'" ios/Runner/Info.plist
+          /usr/libexec/PlistBuddy -c "Add :NSBluetoothAlwaysUsageDescription string \"Demon Costume uses Bluetooth to connect to and control your costume's LED board.\"" ios/Runner/Info.plist
+
+      - name: Generate iOS build config (creates Podfile)
+        run: flutter build ios --release --no-codesign --config-only
 
       - name: Raise iOS deployment target (universal_ble requires >= 13.1)
         run: |
