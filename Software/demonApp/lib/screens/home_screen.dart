@@ -25,6 +25,12 @@ class _HomeScreenState extends State<HomeScreen> {
   int _tabIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+    widget.service.connect().catchError((_) {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<DeviceState>(
       stream: widget.service.state,
@@ -75,7 +81,10 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               LedColorScreen(service: widget.service, deviceState: deviceState),
               BatteryScreen(deviceState: deviceState),
-              WingSpeedScreen(service: widget.service, deviceState: deviceState),
+              WingSpeedScreen(
+                service: widget.service,
+                deviceState: deviceState,
+              ),
             ],
           ),
           bottomNavigationBar: _TabStrip(
@@ -122,7 +131,9 @@ class _TabStrip extends StatelessWidget {
                         duration: const Duration(milliseconds: 150),
                         height: 2,
                         decoration: BoxDecoration(
-                          gradient: i == selectedIndex ? AppColors.accentGradient : null,
+                          gradient: i == selectedIndex
+                              ? AppColors.accentGradient
+                              : null,
                           color: i == selectedIndex ? null : Colors.transparent,
                         ),
                       ),

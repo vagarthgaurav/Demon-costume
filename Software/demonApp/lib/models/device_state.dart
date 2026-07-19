@@ -33,14 +33,16 @@ class DeviceState {
   });
 
   factory DeviceState.disconnected() => DeviceState(
-        connected: false,
-        ledColors: {for (final chain in LedChain.values) chain: Colors.red},
-        ledBrightness: {for (final chain in LedChain.values) chain: 100},
-        ledChainMask: LedChain.allMask,
-        wingsBatteryMillivolts: 0,
-        remoteBatteryMillivolts: 0,
-        wingSpeedPercent: 50,
-      );
+    connected: false,
+    ledColors: {
+      for (final chain in LedChain.values) chain: Colors.lightBlueAccent,
+    },
+    ledBrightness: {for (final chain in LedChain.values) chain: 100},
+    ledChainMask: 0,
+    wingsBatteryMillivolts: 0,
+    remoteBatteryMillivolts: 0,
+    wingSpeedPercent: 100,
+  );
 
   // 2S LiPo: ~6.0V empty, ~8.4V full.
   static const _wingsMinMv = 6000;
@@ -92,8 +94,10 @@ class DeviceState {
       ledColors: ledColors ?? this.ledColors,
       ledBrightness: ledBrightness ?? this.ledBrightness,
       ledChainMask: ledChainMask ?? this.ledChainMask,
-      wingsBatteryMillivolts: wingsBatteryMillivolts ?? this.wingsBatteryMillivolts,
-      remoteBatteryMillivolts: remoteBatteryMillivolts ?? this.remoteBatteryMillivolts,
+      wingsBatteryMillivolts:
+          wingsBatteryMillivolts ?? this.wingsBatteryMillivolts,
+      remoteBatteryMillivolts:
+          remoteBatteryMillivolts ?? this.remoteBatteryMillivolts,
       wingSpeedPercent: wingSpeedPercent ?? this.wingSpeedPercent,
     );
   }

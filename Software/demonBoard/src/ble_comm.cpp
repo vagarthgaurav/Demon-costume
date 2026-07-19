@@ -50,6 +50,12 @@ class LedEnableCallbacks : public NimBLECharacteristicCallbacks {
         if (value.empty()) return;
         led_set_enabled_mask((uint8_t)value[0]);
     }
+
+    // Lets a newly-connected phone read the board's actual on/off state
+    // instead of assuming one, e.g. after the app was killed and relaunched.
+    void onRead(NimBLECharacteristic *characteristic) override {
+        characteristic->setValue(led_enabled_mask());
+    }
 };
 
 // Brightness control is disabled for now (see led.cpp); this characteristic
@@ -83,7 +89,8 @@ void ble_init() {
         LED_COLOR_UUID, NIMBLE_PROPERTY::WRITE | NIMBLE_PROPERTY::WRITE_NR);
     s_led_color_char->setCallbacks(new LedColorCallbacks());
 
-    s_led_enable_char = service->createCharacteristic(LED_ENABLE_UUID, NIMBLE_PROPERTY::WRITE);
+    s_led_enable_char = service->createCharacteristic(
+        LED_ENABLE_UUID, NIMBLE_PROPERTY::READ | NIMBLE_PROPERTY::WRITE);
     s_led_enable_char->setCallbacks(new LedEnableCallbacks());
 
     s_led_brightness_char = service->createCharacteristic(

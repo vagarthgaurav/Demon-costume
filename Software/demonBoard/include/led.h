@@ -25,6 +25,10 @@ void led_set_color(uint8_t chain_mask, uint8_t r, uint8_t g, uint8_t b);
 // forced off regardless of their current color.
 void led_set_enabled_mask(uint8_t mask);
 
+// Bitmask of LED_CHAIN_* currently enabled, per the last led_set_enabled_mask
+// call (or LED_CHAIN_ALL at boot).
+uint8_t led_enabled_mask();
+
 void led_off();
 
 // Re-sends the current color/enabled state without changing it. Called

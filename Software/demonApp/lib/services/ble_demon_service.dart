@@ -125,14 +125,19 @@ class BleDemonService implements DemonService {
       _emit(_current.copyWith(remoteBatteryMillivolts: _decodeMv(bytes)));
     });
 
-    _emit(_current.copyWith(connected: true, ledChainMask: LedChain.allMask));
+    // Read the board's actual on/off state rather than assuming one — the
+    // app may have been killed and relaunched with the board mid-session.
+    final enableBytes = await _ledEnableChar!.read();
+    final actualMask = enableBytes.isNotEmpty ? enableBytes[0] : LedChain.allMask;
 
-    // Push whatever the app is currently showing to the board, so the LEDs
-    // match the UI right away instead of sitting at whatever state the
-    // board booted up in (e.g. off/black).
+    _emit(_current.copyWith(connected: true, ledChainMask: actualMask));
+
+    // Push whatever colors the app is currently showing to the board, so
+    // the LEDs match the UI right away instead of sitting at whatever
+    // color the board booted up in (e.g. off/black). This doesn't touch
+    // the enabled mask we just read above.
     for (final chain in LedChain.values) {
       await setLedColor(_current.colorFor(chain), chain: chain);
-      await setLedChainEnabled(chain, _current.isChainEnabled(chain));
     }
   }
 

@@ -26,35 +26,42 @@ class LedColorScreen extends StatelessWidget {
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          Panel(
-            child: _ChainControl(
-              label: 'All Chains',
-              color: deviceState.colorFor(LedChain.right),
-              enabled: allEnabled,
-              onColorChanged: (color) => service.setLedColor(color),
-              onEnabledChanged: (enabled) async {
-                for (final chain in LedChain.values) {
-                  await service.setLedChainEnabled(chain, enabled);
-                }
-              },
-            ),
-          ),
-          const SizedBox(height: 20),
-          for (final entry in _chainLabels.entries) ...[
-            Panel(
-              child: _ChainControl(
-                label: entry.value,
-                color: deviceState.colorFor(entry.key),
-                enabled: deviceState.isChainEnabled(entry.key),
-                onColorChanged: (color) => service.setLedColor(color, chain: entry.key),
-                onEnabledChanged: (enabled) => service.setLedChainEnabled(entry.key, enabled),
+      child: IgnorePointer(
+        ignoring: !deviceState.connected,
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 200),
+          opacity: deviceState.connected ? 1 : 0.4,
+          child: Column(
+            children: [
+              Panel(
+                child: _ChainControl(
+                  label: 'All Chains',
+                  color: deviceState.colorFor(LedChain.right),
+                  enabled: allEnabled,
+                  onColorChanged: (color) => service.setLedColor(color),
+                  onEnabledChanged: (enabled) async {
+                    for (final chain in LedChain.values) {
+                      await service.setLedChainEnabled(chain, enabled);
+                    }
+                  },
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-          ],
-        ],
+              const SizedBox(height: 20),
+              for (final entry in _chainLabels.entries) ...[
+                Panel(
+                  child: _ChainControl(
+                    label: entry.value,
+                    color: deviceState.colorFor(entry.key),
+                    enabled: deviceState.isChainEnabled(entry.key),
+                    onColorChanged: (color) => service.setLedColor(color, chain: entry.key),
+                    onEnabledChanged: (enabled) => service.setLedChainEnabled(entry.key, enabled),
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
+            ],
+          ),
+        ),
       ),
     );
   }

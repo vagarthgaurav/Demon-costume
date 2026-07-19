@@ -52,8 +52,12 @@ void led_set_enabled_mask(uint8_t mask) {
     apply();
 }
 
+uint8_t led_enabled_mask() {
+    return s_enabled_mask;
+}
+
 void led_off() {
-    s_enabled_mask = LED_CHAIN_ALL;
+    s_enabled_mask = 0;
     led_set_color(LED_CHAIN_ALL, 0, 0, 0);
 }
 
