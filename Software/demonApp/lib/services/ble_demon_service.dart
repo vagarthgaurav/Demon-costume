@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_ble/universal_ble.dart';
 
 import '../models/device_state.dart';
@@ -24,6 +25,8 @@ class BleDemonService implements DemonService {
   static const _deviceName = 'DemonBoard';
   static const _scanTimeout = Duration(seconds: 10);
 
+  static const _colorPrefKey = 'led_color_';
+
   final _controller = StreamController<DeviceState>.broadcast();
   DeviceState _current = DeviceState.disconnected();
 
@@ -36,12 +39,37 @@ class BleDemonService implements DemonService {
   StreamSubscription<Uint8List>? _wingsBatterySub;
   StreamSubscription<Uint8List>? _remoteBatterySub;
 
+  BleDemonService() {
+    _loadSavedColors();
+  }
+
   @override
   Stream<DeviceState> get state => _controller.stream;
 
   void _emit(DeviceState next) {
     _current = next;
     _controller.add(_current);
+  }
+
+  /// Restores the last-chosen colors from disk so the UI (and the board,
+  /// once connected) picks up where the user left off instead of resetting
+  /// to the [DeviceState.disconnected] default of solid red.
+  Future<void> _loadSavedColors() async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = <LedChain, Color>{};
+    for (final chain in LedChain.values) {
+      final value = prefs.getInt('$_colorPrefKey${chain.name}');
+      if (value != null) saved[chain] = Color(value);
+    }
+    if (saved.isEmpty) return;
+    _emit(_current.copyWith(ledColors: {..._current.ledColors, ...saved}));
+  }
+
+  Future<void> _saveColor(LedChain? chain, Color color) async {
+    final prefs = await SharedPreferences.getInstance();
+    for (final c in chain == null ? LedChain.values : [chain]) {
+      await prefs.setInt('$_colorPrefKey${c.name}', color.toARGB32());
+    }
   }
 
   @override
@@ -135,6 +163,7 @@ class BleDemonService implements DemonService {
       withResponse: false,
     );
     _emit(_current.withChainColor(chain, color));
+    await _saveColor(chain, color);
   }
 
   @override

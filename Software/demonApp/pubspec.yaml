@@ -44,6 +44,9 @@ dependencies:
   # Color picker dialog for per-chain LED color selection
   flutter_colorpicker: ^1.1.0
 
+  # Persists the last-chosen LED colors across app restarts
+  shared_preferences: ^2.3.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
