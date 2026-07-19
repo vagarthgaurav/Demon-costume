@@ -11,13 +11,18 @@ class BatteryBadge extends StatelessWidget {
   const BatteryBadge({
     super.key,
     required this.tooltip,
-    required this.deviceIcon,
+    this.deviceIcon,
+    this.deviceIconAsset,
     required this.percent,
     required this.connected,
-  });
+  }) : assert(
+         deviceIcon != null || deviceIconAsset != null,
+         'Provide either deviceIcon or deviceIconAsset',
+       );
 
   final String tooltip;
-  final IconData deviceIcon;
+  final IconData? deviceIcon;
+  final String? deviceIconAsset;
   final int percent;
   final bool connected;
 
@@ -35,7 +40,13 @@ class BatteryBadge extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(deviceIcon, size: 15, color: color),
+          if (deviceIconAsset != null)
+            ColorFiltered(
+              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+              child: Image.asset(deviceIconAsset!, width: 22, height: 22),
+            )
+          else
+            Icon(deviceIcon, size: 15, color: color),
           const SizedBox(width: 3),
           Icon(_batteryIcon(), size: 18, color: color),
         ],

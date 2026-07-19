@@ -17,15 +17,9 @@ class BatteryScreen extends StatelessWidget {
         children: [
           _BatteryPanel(
             label: 'Wings',
+            iconAsset: 'assets/icons/wings.png',
             volts: deviceState.wingsBatteryVolts,
             fraction: deviceState.wingsBatteryFraction,
-            connected: deviceState.connected,
-          ),
-          const SizedBox(height: 20),
-          _BatteryPanel(
-            label: 'Remote',
-            volts: deviceState.remoteBatteryVolts,
-            fraction: deviceState.remoteBatteryFraction,
             connected: deviceState.connected,
           ),
         ],
@@ -37,12 +31,14 @@ class BatteryScreen extends StatelessWidget {
 class _BatteryPanel extends StatelessWidget {
   const _BatteryPanel({
     required this.label,
+    this.iconAsset,
     required this.volts,
     required this.fraction,
     required this.connected,
   });
 
   final String label;
+  final String? iconAsset;
   final double volts;
   final double fraction;
   final bool connected;
@@ -55,7 +51,21 @@ class _BatteryPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PanelLabel(label),
+          Row(
+            children: [
+              if (iconAsset != null) ...[
+                ColorFiltered(
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.textSecondary,
+                    BlendMode.srcIn,
+                  ),
+                  child: Image.asset(iconAsset!, width: 14, height: 14),
+                ),
+                const SizedBox(width: 6),
+              ],
+              PanelLabel(label),
+            ],
+          ),
           const SizedBox(height: 20),
           Text(
             connected ? '${volts.toStringAsFixed(2)}V' : '--.--V',

@@ -50,15 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
             actions: [
               BatteryBadge(
                 tooltip: 'Wings',
-                deviceIcon: Icons.flight_outlined,
+                deviceIconAsset: 'assets/icons/wings.png',
                 percent: deviceState.wingsBatteryPercent,
-                connected: deviceState.connected,
-              ),
-              const SizedBox(width: 14),
-              BatteryBadge(
-                tooltip: 'Remote',
-                deviceIcon: Icons.settings_remote_outlined,
-                percent: deviceState.remoteBatteryPercent,
                 connected: deviceState.connected,
               ),
               const SizedBox(width: 20),

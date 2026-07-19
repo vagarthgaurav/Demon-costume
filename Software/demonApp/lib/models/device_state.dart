@@ -19,8 +19,7 @@ enum LedChain {
 /// Snapshot of everything the app knows about a connected demon board.
 ///
 /// There are two independent battery packs in this system: the wings board
-/// itself (2S LiPo) and the handheld remote (3S LiPo). Their voltage ranges
-/// differ, so percentage is computed per-pack.
+/// itself (3S LiPo) and the handheld remote (3S LiPo).
 class DeviceState {
   const DeviceState({
     required this.connected,
@@ -44,13 +43,13 @@ class DeviceState {
     wingSpeedPercent: 100,
   );
 
-  // 2S LiPo: ~6.0V empty, ~8.4V full.
-  static const _wingsMinMv = 6000;
-  static const _wingsMaxMv = 8400;
+  // 3S LiPo: ~10.8V empty, ~12.6V full.
+  static const _wingsMinMv = 10800;
+  static const _wingsMaxMv = 12600;
 
   // 3S LiPo: ~10.8V empty, ~12.6V full (matches demonRemote/bat_indicator.cpp).
-  static const _remoteMinMv = 10800;
-  static const _remoteMaxMv = 12600;
+  static const _remoteMinMv = 3700;
+  static const _remoteMaxMv = 4200;
 
   final bool connected;
   final Map<LedChain, Color> ledColors;
